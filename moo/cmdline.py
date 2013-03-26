@@ -19,7 +19,7 @@ Usage: moo [options] FILE
 Options:
   -q, --quiet             Quiet mode.
   -p port, --port=port    Server port. [default: 7777]
-  -a addr, --addr=addr    Address [default: 0.0.0.0]
+  -a addr, --addr=addr    Address [default: 127.0.0.1]
   -o file, --output=file  Export to HTML mode.
   --debug                 Output verbose debug logs.
 
