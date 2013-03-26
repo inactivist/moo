@@ -19,6 +19,7 @@ Usage: moo [options] FILE
 Options:
   -q, --quiet             Quiet mode.
   -p port, --port=port    Server port. [default: 7777]
+  -a addr, --addr=addr    Address [default: 0.0.0.0]
   -o file, --output=file  Export to HTML mode.
   --debug                 Output verbose debug logs.
 
@@ -37,11 +38,11 @@ from docopt import docopt
 #     s.close()
 #     return port
 
-def open_local_url(port):
+def open_local_url(addr, port):
     import webbrowser
     logging.debug('opening web browser...')
     # from ipdb import set_trace; set_trace()
-    local_url = 'http://127.0.0.1:%d' % port
+    local_url = 'http://%s:%d' % (addr, port)
     webbrowser.open(local_url)
 
 def main():
@@ -72,6 +73,7 @@ def main():
                         format='%(asctime)s %(levelname)-8s %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
 
+    addr = args['--addr']
     try:
         port = int(args['--port'])
     except:
@@ -80,11 +82,11 @@ def main():
 
     # try open browser
     try:
-        open_local_url(port)
+        open_local_url(addr, port)
     except:
         pass
     # start server
-    print 'Preview on http://127.0.0.1:%d' % port
+    print 'Preview on http://%s:%d' % (addr, port)
     print 'Hit Ctrl-C to quit.'
     moo.quickstart(markdown_file, port=port, debug=use_debug)
 
