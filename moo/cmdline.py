@@ -88,7 +88,7 @@ def main():
     # start server
     print 'Preview on http://%s:%d' % (addr, port)
     print 'Hit Ctrl-C to quit.'
-    moo.quickstart(markdown_file, port=port, debug=use_debug)
+    moo.quickstart(markdown_file, host=addr, port=port, debug=use_debug)
 
 if __name__ == '__main__':
     main()

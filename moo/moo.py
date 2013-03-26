@@ -40,9 +40,9 @@ bottle.TEMPLATE_PATH = [DEFAULT_TEMPLATE_DIR, './']
 DEFAULT_STATIC_FILES_DIR = os.path.normpath(os.path.join(__path__, 'static'))
 
 
-def build_app(filename, port, debug, quiet):
+def build_app(filename, host, port, debug, quiet):
     app = Bottle()
-    server = StoppableCherryPyServer(port=port, debug=debug, quiet=quiet)
+    server = StoppableCherryPyServer(host=host, port=port, debug=debug, quiet=quiet)
     markup = Markup(filename)
     dirname, basename = os.path.split(markup.filename)
     title = '%s - %s' % (basename, dirname)
@@ -156,8 +156,8 @@ class Markup(object):
 Markup.add_markup('markdown', r'\.(markdown|md|mdown|mkd|mkdn)$', markdown.to_html)
 
 
-def quickstart(markdown_file, port, debug=False, quiet=True):
-    app = build_app(filename=markdown_file, port=port, debug=debug, quiet=quiet)
+def quickstart(markdown_file, host, port, debug=False, quiet=True):
+    app = build_app(filename=markdown_file, host=host, port=port, debug=debug, quiet=quiet)
     logging.debug('starting server at port %d', port)
     app()
 
