@@ -19,7 +19,7 @@ Usage: moo [options] FILE
 Options:
   -q, --quiet             Quiet mode.
   -p port, --port=port    Server port. [default: 7777]
-  -a addr, --addr=addr    Address [default: 127.0.0.1]
+  -a host, --host=addr    Host address to listen on. [default: 127.0.0.1]
   -o file, --output=file  Export to HTML mode.
   --debug                 Output verbose debug logs.
 
@@ -73,7 +73,7 @@ def main():
                         format='%(asctime)s %(levelname)-8s %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
 
-    addr = args['--addr']
+    host = args['--host']
     try:
         port = int(args['--port'])
     except:
@@ -86,9 +86,9 @@ def main():
     except:
         pass
     # start server
-    print 'Preview on http://%s:%d' % (addr, port)
+    print 'Preview on http://%s:%d' % (host, port)
     print 'Hit Ctrl-C to quit.'
-    moo.quickstart(markdown_file, host=addr, port=port, debug=use_debug)
+    moo.quickstart(markdown_file, host=host, port=port, debug=use_debug)
 
 if __name__ == '__main__':
     main()
